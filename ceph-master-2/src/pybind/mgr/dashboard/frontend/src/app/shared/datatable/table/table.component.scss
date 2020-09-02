@@ -1,0 +1,298 @@
+@use './src/styles/defaults/bootstrap-defaults' as bd;
+@use './src/styles/defaults/mixins';
+
+@mixin row-details-icon {
+  color: bd.$gray-900;
+  font-family: 'ForkAwesome', sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.dataTables_wrapper {
+  margin-bottom: 25px;
+
+  .separator {
+    border-left: 1px solid bd.$color-table-seperator-border;
+    display: inline-block;
+    height: 30px;
+    margin-left: 5px;
+    padding-left: 5px;
+    vertical-align: middle;
+  }
+
+  .widget-toolbar {
+    border-left: 1px solid bd.$color-table-seperator-border;
+    float: right;
+    padding: 0 8px;
+
+    .form-check {
+      padding-left: 0;
+    }
+  }
+
+  .dataTables_length > input {
+    line-height: 25px;
+    text-align: right;
+  }
+}
+
+.dataTables_header {
+  background-color: bd.$color-table-header-bg;
+  border: 1px solid bd.$color-table-header-border;
+  border-bottom: 0;
+  padding: 5px;
+  position: relative;
+
+  .cd-datatable-actions {
+    float: left;
+  }
+
+  ::ng-deep .table-filters {
+    border-left: 1px solid bd.$color-table-seperator-border;
+    float: right;
+    padding-left: 8px;
+  }
+
+  ::ng-deep .table-filters label {
+    margin-right: 4px;
+  }
+
+  .form-group {
+    padding-left: 8px;
+  }
+
+  .input-group {
+    border-left: 1px solid bd.$color-table-input-border;
+    float: right;
+    max-width: 250px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 40%;
+
+    .form-control {
+      height: 30px;
+    }
+  }
+
+  .input-group.dataTables_paginate {
+    min-width: 85px;
+    padding-right: 8px;
+    width: 8%;
+  }
+
+  .filter-chips {
+    float: right;
+    padding: 0 8px;
+  }
+}
+
+::ng-deep .cd-datatable {
+  border: 1px solid bd.$color-table-header-border;
+  margin-bottom: 0;
+  max-width: none !important;
+
+  .progress-linear {
+    display: block;
+    height: 5px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+
+    .container {
+      background-color: bd.$color-table-active-row;
+
+      .bar {
+        background-color: bd.$color-table-active-row;
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+      }
+
+      .bar::before {
+        animation: progress-loading 3s linear infinite;
+        background-color: bd.$color-table-progress-bar-active;
+        content: '';
+        display: block;
+        height: 100%;
+        left: -200px;
+        position: absolute;
+        width: 200px;
+      }
+    }
+  }
+
+  .datatable-header {
+    background-clip: padding-box;
+    background-color: bd.$color-table-datatable-header;
+    background-image: linear-gradient(
+      to bottom,
+      bd.$color-table-gradient-1 0,
+      bd.$color-table-gradient-2 100%
+    );
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffafafa', endColorstr='#ffededed', GradientType=0);
+
+    .sort-asc,
+    .sort-desc {
+      color: bd.$color-table-sort;
+    }
+
+    .datatable-header-cell {
+      @include mixins.table-cell;
+
+      font-weight: bold;
+      text-align: left;
+
+      .datatable-header-cell-label {
+        &::after {
+          font-family: ForkAwesome;
+          font-weight: 400;
+          height: 9px;
+          left: 10px;
+          line-height: 12px;
+          position: relative;
+          vertical-align: baseline;
+          width: 12px;
+        }
+      }
+
+      &.sortable {
+        .datatable-header-cell-label::after {
+          content: ' \f0dc';
+        }
+
+        &.sort-active {
+          &.sort-asc .datatable-header-cell-label::after {
+            content: ' \f160';
+          }
+
+          &.sort-desc .datatable-header-cell-label::after {
+            content: ' \f161';
+          }
+        }
+      }
+
+      &:first-child {
+        border-left: 0;
+      }
+    }
+  }
+
+  .datatable-body {
+    margin-bottom: -6px;
+
+    .empty-row {
+      background-color: bd.$color-table-empty-row;
+      font-style: italic;
+      font-weight: bold;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      text-align: center;
+    }
+
+    .datatable-body-row {
+      &.clickable:hover .datatable-row-group {
+        background-color: bd.$color-table-hover-row;
+        transition-duration: 0.3s;
+        transition-property: background;
+        transition-timing-function: linear;
+      }
+
+      &.datatable-row-even {
+        background-color: bd.$color-table-even-row-bg;
+      }
+
+      &.datatable-row-odd {
+        background-color: bd.$color-table-odd-row-bg;
+      }
+
+      &.active,
+      &.active:hover {
+        background-color: bd.$color-table-active-row-hover;
+      }
+
+      .datatable-body-cell {
+        @include mixins.table-cell;
+
+        &:first-child {
+          border-left: 0;
+        }
+
+        .datatable-body-cell-label {
+          display: block;
+          height: 100%;
+        }
+      }
+    }
+
+    .datatable-row-detail {
+      border-bottom: 2px solid bd.$color-table-header-border;
+      overflow-y: visible !important;
+      padding: 20px;
+    }
+
+    .expand-collapse-icon {
+      display: block;
+      height: 100%;
+      text-align: center;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .expand-collapse-icon-right::before {
+      @include row-details-icon;
+      content: '\f105';
+    }
+
+    .expand-collapse-icon-down::before {
+      @include row-details-icon;
+      content: '\f107';
+    }
+  }
+
+  .datatable-footer {
+    display: unset !important;
+
+    .selected-count,
+    .page-count {
+      font-style: italic;
+      padding-left: 5px;
+    }
+  }
+
+  .cd-datatable-checkbox {
+    text-align: center;
+  }
+}
+
+@keyframes progress-loading {
+  from {
+    left: -200px;
+    width: 15%;
+  }
+
+  50% {
+    width: 30%;
+  }
+
+  70% {
+    width: 70%;
+  }
+
+  80% {
+    left: 50%;
+  }
+
+  95% {
+    left: 120%;
+  }
+
+  to {
+    left: 100%;
+  }
+}

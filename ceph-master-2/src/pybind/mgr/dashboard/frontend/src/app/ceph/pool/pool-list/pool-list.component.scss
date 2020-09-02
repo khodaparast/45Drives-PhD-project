@@ -1,0 +1,17 @@
+@use './src/styles/defaults/bootstrap-defaults' as bd;
+
+::ng-deep .pg-clean {
+  color: bd.$color-bright-green;
+}
+
+::ng-deep .pg-working {
+  color: bd.$color-primary;
+}
+
+::ng-deep .pg-warning {
+  color: bd.$color-bright-yellow;
+}
+
+::ng-deep .pg-unknown {
+  color: bd.$color-solid-red;
+}

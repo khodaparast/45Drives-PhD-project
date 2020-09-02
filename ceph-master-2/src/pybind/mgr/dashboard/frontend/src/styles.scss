@@ -1,0 +1,178 @@
+/* You can add global styles to this file, and also import other style files */
+@use './src/styles/defaults' as *;
+
+// Angular2-Tree Component
+@import '~angular-tree-component/dist/angular-tree-component.css';
+
+// Fork-Awesome
+$fa-font-path: '~fork-awesome/fonts';
+$font-family-icon: 'ForkAwesome';
+
+// Bootstrap
+$theme-colors: (
+  'primary': $color-primary,
+  'secondary': $color-accent,
+  'dark': $color-mild-gray
+);
+
+$font-family-sans-serif: 'Helvetica Neue', Helvetica, Arial, 'Noto Sans', sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+$badge-font-size: 1rem;
+$form-feedback-font-size: 100%;
+$popover-max-width: 350px;
+
+@import '~bootstrap/scss/bootstrap';
+@import '~fork-awesome/scss/fork-awesome';
+@import 'app/ceph/dashboard/info-card/info-card-popover.scss';
+@import './src/styles/bootstrap-extends';
+
+@import './src/styles/ceph-custom/basics';
+@import './src/styles/ceph-custom/buttons';
+@import './src/styles/ceph-custom/dropdown';
+@import './src/styles/ceph-custom/forms';
+@import './src/styles/ceph-custom/grid';
+@import './src/styles/ceph-custom/icons';
+
+/* If javascript is disabled. */
+.noscript {
+  padding-top: 5em;
+}
+
+.noscript p {
+  color: $color-noscript-text;
+}
+
+/* Card */
+.card-footer button.btn:not(:first-child) {
+  margin-left: 5px;
+}
+/* Modal dialog */
+.modal-footer button.btn:not(:first-child) {
+  margin-left: 5px;
+}
+
+.nav-tabs {
+  margin-bottom: 15px;
+}
+
+/* Block UI */
+.block-ui-wrapper {
+  background: $color-transparent-black !important;
+}
+
+.tooltip-inner {
+  background-color: $color-solid-white;
+  border: 1px solid $color-gray20;
+  color: $color-gray13;
+  font-size: 1.1em;
+}
+
+.toast-message > ul {
+  margin: 0;
+  padding-left: 1em;
+}
+
+.cd-header,
+legend {
+  @extend .pb-1;
+  @extend .mt-4;
+  @extend .mb-4;
+  @extend .border-bottom;
+}
+
+@include media-breakpoint-up(sm) {
+  .col-form-label {
+    text-align: right;
+  }
+}
+
+.col-form-label {
+  font-weight: 700;
+}
+
+// Firefox is adding a white background-coor in these components
+cd-submit-button {
+  background-color: transparent !important;
+}
+
+// All '.fa' icons will have fixed width
+.fa {
+  @extend .fa-fw;
+}
+
+pre {
+  @extend .card;
+  @extend .bg-light;
+  @extend .p-2;
+  // @extend my-2;
+}
+
+bfv-messages {
+  display: none;
+}
+
+// Display error message in 'input-group' form fields.
+// https://github.com/twbs/bootstrap/issues/23454
+// https://github.com/adrianhurt/play-bootstrap/issues/118
+.form-group.has-error .invalid-feedback {
+  display: block;
+}
+
+//Displaying the password strength
+.password-strength-level {
+  flex: 100%;
+  margin-top: 2px;
+
+  .weak,
+  .ok,
+  .strong,
+  .very-strong {
+    border-radius: 0.25rem;
+    height: 13px;
+  }
+
+  .weak {
+    background: $color-solid-red;
+    width: 25%;
+  }
+
+  .ok {
+    background: $color-bright-yellow;
+    width: 50%;
+  }
+
+  .strong {
+    background: $color-bright-green;
+    width: 75%;
+  }
+
+  .very-strong {
+    background: $color-green;
+    width: 100%;
+  }
+}
+
+// Custom badges.
+.badge-hdd {
+  background-color: $color-blue-gray;
+  color: $color-solid-white;
+}
+
+.badge-ssd {
+  background-color: $color-blue;
+  color: $color-solid-white;
+}
+
+.badge-tab {
+  background-color: $color-light-shade-gray;
+  color: $color-solid-gray;
+}
+
+// angular-tree-component
+tree-root {
+  tree-viewport {
+    // Fix visual bug when tree is empty
+    min-height: 1em;
+  }
+}
